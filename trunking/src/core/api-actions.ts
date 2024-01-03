@@ -1,5 +1,3 @@
-
-
-export enum ApiAction  {
-  "SessionCreate" = "SessionCreate",
-};
+export enum ApiAction {
+  "SessionCreate" = "SessionCreate"
+}

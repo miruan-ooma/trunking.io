@@ -1,66 +1,64 @@
 <div class="trunk-login">
+  <div class="trunk-login__item trunk-login__img-wrap">
+    <img src="../../../assets/img/logos/tio_logo1.png" />
+  </div>
 
-<div class="trunk-login__item trunk-login__img-wrap">
-    <img src="../../../assets/img/logos/tio_logo1.png"> 
-</div>
-
-<div class="trunk-login__item">
-  <mat-card>
-    <mat-card-content>
-      <h2 class="mat-headline-4">Welcome back to Trunking.io</h2>
+  <div class="trunk-login__item">
+    <mat-card>
+      <mat-card-content>
+        <h2 class="mat-headline-4">Welcome back to Trunking.io</h2>
         <form class="trunk-login__form" [formGroup]="loginForm">
-            <mat-form-field>
-              <mat-label>Email</mat-label>
-              <input
-                #loginUsername
-                matInput
-                type="text"
-                autocomplete
-                autofocus
-                formControlName="Email"
-              />
-              @if (errorEmailMessage) {
-                <mat-error>{{errorEmailMessage}}</mat-error>
-              }
-            </mat-form-field>
-            <mat-form-field>
-              <mat-label>Password</mat-label>
-              <input
-                #loginPassword
-                matInput
-                type="password"
-                autocomplete
-                formControlName="Password"
-              />
-              <mat-hint
-                class="entry-link"
-                tabindex="-1"
-                routerLinkActive="selected"
-                [routerLinkActiveOptions]="{ exact: true }"
-              >
-              Forgot password?
-              </mat-hint>
-              @if (errorPasswordMessage) {
-                <mat-error>{{errorPasswordMessage}}</mat-error>
-              }
-            </mat-form-field>
-            <button
-              class="trunk-login__btn"
-              mat-flat-button
-              color="primary"
-              [disabled]="loading$ | async"
-              (click)="submit()"
-              type="submit"
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input
+              #loginUsername
+              matInput
+              type="text"
+              autocomplete
+              autofocus
+              formControlName="Email"
+            />
+            @if (errorEmailMessage) {
+              <mat-error>{{ errorEmailMessage }}</mat-error>
+            }
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input
+              #loginPassword
+              matInput
+              type="password"
+              autocomplete
+              formControlName="Password"
+            />
+            <mat-hint
+              class="entry-link"
+              tabindex="-1"
+              routerLinkActive="selected"
+              [routerLinkActiveOptions]="{ exact: true }"
             >
+              Forgot password?
+            </mat-hint>
+            @if (errorPasswordMessage) {
+              <mat-error>{{ errorPasswordMessage }}</mat-error>
+            }
+          </mat-form-field>
+          <button
+            class="trunk-login__btn"
+            mat-flat-button
+            color="primary"
+            [disabled]="loading$ | async"
+            (click)="submit()"
+            type="submit"
+          >
             Sign In
-            </button>
-    
-          </form>
-          <p class="text-center"><strong>Stuck?</strong> Call 844-468-7865 or email support&#64;trunking.io for additional assitance</p>
-    </mat-card-content>
-  </mat-card>
+          </button>
+        </form>
+        <p class="text-center">
+          <strong>Stuck?</strong> Call 844-468-7865 or email support&#64;trunking.io for additional
+          assitance
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
-
-</div>
-
-  

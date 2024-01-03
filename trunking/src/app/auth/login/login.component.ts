@@ -1,52 +1,54 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject } from 'rxjs';
-import { AuthService } from '../auth.service';
+import { AfterViewInit, Component, OnInit } from "@angular/core";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
+import { BehaviorSubject } from "rxjs";
+import { AuthService } from "../auth.service";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrl: "./login.component.scss"
 })
 export class LoginComponent implements OnInit {
   loading$ = new BehaviorSubject<boolean>(false);
   loginForm!: UntypedFormGroup;
 
-  constructor(private fb: UntypedFormBuilder, private authService: AuthService) {}
+  constructor(
+    private fb: UntypedFormBuilder,
+    private authService: AuthService
+  ) {}
 
   submit() {
     const value = this.loginForm.value;
     this.authService.login({
       Username: value.Email,
-      Password: value.Password});
+      Password: value.Password
+    });
   }
 
   ngOnInit(): void {
     this.createForm();
   }
 
-
   get errorEmailMessage() {
-    if (this.loginForm.get('Email')?.hasError('required')) {
-      return 'Username is required';
+    if (this.loginForm.get("Email")?.hasError("required")) {
+      return "Username is required";
     }
 
-    return '';
+    return "";
   }
 
   get errorPasswordMessage() {
-    if (this.loginForm.get('Password')?.hasError('required')) {
-      return 'Password is required';
+    if (this.loginForm.get("Password")?.hasError("required")) {
+      return "Password is required";
     }
 
-    return '';
+    return "";
   }
-
 
   private createForm() {
     this.loginForm = this.fb.group({
-      Email: ['', Validators.required],
-      Password: ['', Validators.required]
-    })
+      Email: ["", Validators.required],
+      Password: ["", Validators.required]
+    });
   }
 }
