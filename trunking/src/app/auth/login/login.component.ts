@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,9 +12,14 @@ export class LoginComponent implements OnInit {
   loading$ = new BehaviorSubject<boolean>(false);
   loginForm!: UntypedFormGroup;
 
-  constructor(private fb: UntypedFormBuilder) {}
+  constructor(private fb: UntypedFormBuilder, private authService: AuthService) {}
 
-  submit() {}
+  submit() {
+    const value = this.loginForm.value;
+    this.authService.login({
+      Username: value.Email,
+      Password: value.Password});
+  }
 
   ngOnInit(): void {
     this.createForm();
