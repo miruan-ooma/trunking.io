@@ -1,0 +1,34 @@
+/* You can add global styles to this file, and also import other style files */
+.container {
+    width: 100%;
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  @media (min-width: 576px) {
+    .container {
+      max-width: 540px;
+    }
+  }
+  @media (min-width: 768px) {
+    .container {
+      max-width: 720px;
+    }
+  }
+  @media (min-width: 992px) {
+    .container {
+      max-width: 960px;
+    }
+  }
+  @media (min-width: 1200px) {
+    .container {
+      max-width: 1200px;
+    }
+  }
+
+  .container_centered {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }

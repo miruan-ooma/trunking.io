@@ -8,7 +8,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle'
   standalone: true,
   imports: [CommonModule, RouterOutlet, MatSlideToggleModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.sass'
+  styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'trunking';

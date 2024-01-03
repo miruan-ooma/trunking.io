@@ -1,0 +1,32 @@
+.trunk-login {
+    display: flex;
+    justify-content: space-between;
+
+ &__img-wrap {
+    img {
+        width: 400px;
+        max-width: 100%;
+        height: auto;
+    }
+ }
+
+ &__item {
+    width: 50%;
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+    text-align: center;
+ }
+
+ &__form {
+    display: flex;
+    flex-direction: column;
+ }
+
+ &__btn {
+    margin-top: 1rem;
+ }
+
+ .mat-mdc-form-field {
+    margin-bottom: 1rem;
+ }
+}
