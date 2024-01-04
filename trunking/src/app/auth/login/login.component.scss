@@ -3,6 +3,10 @@
   justify-content: space-between;
 
   &__img-wrap {
+    display: inline-grid;
+    align-items: center;
+    justify-content: center;
+
     img {
       width: 400px;
       max-width: 100%;
@@ -23,7 +27,10 @@
   }
 
   &__btn {
-    margin-top: 1rem;
+    width: 67px;
+    font-size: 0.9375rem;
+    white-space: nowrap;
+    margin: 1rem auto 0;
   }
 
   .mat-mdc-form-field {
