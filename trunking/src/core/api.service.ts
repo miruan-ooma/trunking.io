@@ -1,6 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "../environments/environment";
+import { EMPTY, Observable, map } from "rxjs";
+
+interface MakeRequestOptions {
+  method?: "GET" | "POST" | "DELETE";
+}
 
 @Injectable({
   providedIn: "root"
@@ -12,7 +18,7 @@ export class ApiService {
   readonly VERSION_NUMBER = "3.29.6";
   constructor(private http: HttpClient) {}
 
-  makeRequest(actionName: string, body: any = {}) {
+  makeRequest<T = any>(actionName: string, body: any = {}, options?: MakeRequestOptions) {
     console.log(environment);
 
     const headerDict = {
@@ -27,8 +33,15 @@ export class ApiService {
     params.Output = "json";
     params.AppUserAgent = "OnSIP_App/" + this.VERSION_NUMBER + "/web";
     const query = this.querystringify(params);
-    let request$ = null;
-    return (request$ = this.http.post(this.ApiUrl, query, requestOptions));
+    let request$: Observable<T> = EMPTY;
+
+    if (!options || options?.method === "GET") {
+      request$ = this.http.get<T>(this.ApiUrl, requestOptions);
+    } else if (options?.method === "POST") {
+      request$ = this.http.post<T>(this.ApiUrl, query, requestOptions);
+    }
+
+    return request$.pipe(map(res => (res as any).Response as T));
   }
 
   private querystringify(obj: any): string {
