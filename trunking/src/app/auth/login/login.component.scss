@@ -1,3 +1,7 @@
+@use "@angular/material" as mat;
+@use "sass:map";
+@import "../../../scss/app-theme-variables.scss";
+
 .trunk-login {
   display: flex;
   justify-content: space-between;
@@ -31,6 +35,15 @@
     font-size: 0.9375rem;
     white-space: nowrap;
     margin: 1rem auto 0;
+  }
+
+  &__hint {
+    cursor: pointer;
+    color: map.get($trunking-primary-palette, 500);
+
+    &:hover {
+      color: map.get($trunking-primary-palette, 700);
+    }
   }
 
   .mat-mdc-form-field {
