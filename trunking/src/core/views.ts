@@ -1,3 +1,4 @@
 export const views = {
-  DASHBOARD: "/dashboard"
+  DASHBOARD: "/dashboard",
+  LOGIN: "/auth"
 };
