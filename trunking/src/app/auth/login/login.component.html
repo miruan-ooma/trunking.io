@@ -1,6 +1,6 @@
 <div class="trunk-login">
   <div class="trunk-login__item trunk-login__img-wrap">
-    <img src="../../../assets/img/logos/tio_logo1.png" />
+    <img src="../../../assets/img/logos/tio_logo1.png" alt="trunking io" />
   </div>
 
   <div class="trunk-login__item">
@@ -10,14 +10,7 @@
         <form class="trunk-login__form" [formGroup]="loginForm">
           <mat-form-field>
             <mat-label>Email</mat-label>
-            <input
-              #loginUsername
-              matInput
-              type="text"
-              autocomplete
-              autofocus
-              formControlName="Email"
-            />
+            <input #loginUsername matInput type="text" autocomplete formControlName="Email" />
             @if (errorEmailMessage) {
               <mat-error>{{ errorEmailMessage }}</mat-error>
             }

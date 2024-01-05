@@ -15,7 +15,7 @@ export class ApiService {
   readonly ApiUrl = environment.production
     ? "https://api.onsip.com/api"
     : "https://beta.jnctn.com/api";
-  readonly VERSION_NUMBER = "3.29.6";
+  readonly VERSION_NUMBER = "0.0.1";
   constructor(private http: HttpClient) {}
 
   makeRequest<T = any>(actionName: string, body: any = {}, options?: MakeRequestOptions) {
@@ -31,7 +31,7 @@ export class ApiService {
     const params = { ...body };
     params.Action = actionName;
     params.Output = "json";
-    params.AppUserAgent = "OnSIP_App/" + this.VERSION_NUMBER + "/web";
+    params.AppUserAgent = "Trunking_io/" + this.VERSION_NUMBER + "/web";
     const query = this.querystringify(params);
     let request$: Observable<T> = EMPTY;
 

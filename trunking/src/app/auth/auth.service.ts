@@ -13,7 +13,6 @@ import { User } from "../shared/models/user.model";
 export interface APISessionObject {
   SessionId: string;
   UserId: string;
-  ParentUserId?: string;
   Roles: TrunkingAPINotEmptyArray<"Role", { Name: Role }>;
 }
 
