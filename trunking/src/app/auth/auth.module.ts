@@ -8,9 +8,10 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
+import { ForgotPasswordComponent } from "./forgotPassword/forgot-password.component";
 
 @NgModule({
-  declarations: [AuthComponent, LoginComponent],
+  declarations: [AuthComponent, LoginComponent, ForgotPasswordComponent],
   imports: [
     CommonModule,
     FormsModule,
