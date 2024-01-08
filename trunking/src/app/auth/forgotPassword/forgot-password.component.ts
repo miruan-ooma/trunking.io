@@ -1,7 +1,6 @@
 import { Component, inject, signal } from "@angular/core";
 import { NonNullableFormBuilder, Validators } from "@angular/forms";
 import { SendEmailService } from "../../../core/services/send-email.service";
-import { lastValueFrom } from "rxjs/internal/lastValueFrom";
 import { views } from "../../../core/views";
 
 @Component({
@@ -29,11 +28,12 @@ export class ForgotPasswordComponent {
   submit() {
     if (this.forgotPasswordForm.valid) {
       const value = this.forgotPasswordForm.getRawValue();
-      lastValueFrom(this.sendEmailService.sendResetPasswordEmail(value.email))
-        .then(() => {
+      this.sendEmailService.sendResetPasswordEmail(value.email).subscribe({
+        next: () => {
           this.showSuccessMessage.update(() => true);
-        })
-        .catch(msg => console.error(msg));
+        },
+        error: error => console.error(error)
+      });
     }
   }
 }
