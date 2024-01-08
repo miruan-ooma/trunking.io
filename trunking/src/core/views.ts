@@ -1,4 +1,5 @@
 export const views = {
   DASHBOARD: "/dashboard",
-  LOGIN: "/auth"
+  LOGIN: "/auth",
+  FORGOT_PASSWORD: "/auth/forgot-password"
 };

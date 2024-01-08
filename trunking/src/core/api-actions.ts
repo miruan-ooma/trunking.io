@@ -1,5 +1,6 @@
 export enum ApiAction {
   "SessionCreate" = "SessionCreate",
   "UserRead" = "UserRead",
-  "SessionRecreate" = "SessionRecreate"
+  "SessionRecreate" = "SessionRecreate",
+  "SendPasswordResetEmail" = "SendPasswordResetEmail"
 }
