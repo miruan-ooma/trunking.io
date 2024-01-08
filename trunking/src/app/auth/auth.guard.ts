@@ -9,7 +9,7 @@ export const authGuard: CanActivateFn = () => {
   const router = inject(Router);
   return userSessionService.user$.pipe(
     delay(500),
-    map(user => !user)
-    // tap(user => !user && router.navigateByUrl(views.LOGIN))
+    map(user => !!user),
+    tap(user => !user && router.navigateByUrl(views.LOGIN))
   );
 };
