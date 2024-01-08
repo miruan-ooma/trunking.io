@@ -1,3 +1,7 @@
+@use "@angular/material" as mat;
+@use "sass:map";
+@import "../../scss/app-theme-variables.scss";
+
 :host {
   display: block;
   height: 100%;
@@ -10,7 +14,7 @@
     .sidenav {
       &__logo {
         padding: 1rem;
-        background: #133841;
+        background-color: map.get($trunking-primary-palette, 900);
         font-size: 1.175rem;
         font-weight: 500;
         color: #fff;
@@ -48,6 +52,9 @@
       max-width: 250px;
       min-width: 250px;
     }
+    .mat-toolbar {
+      background-color: map.get($trunking-primary-palette, 900);
+    }
   }
 
   .content {
@@ -65,7 +72,7 @@
       top: 0;
       width: 100%;
       height: 200px;
-      background-color: rgb(75, 133, 148);
+      background-color: map.get($trunking-primary-palette, 900);
       z-index: -1;
     }
   }
