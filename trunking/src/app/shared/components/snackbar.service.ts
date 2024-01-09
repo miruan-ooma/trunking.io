@@ -21,12 +21,7 @@ export class SnackbarService {
         {
           duration: 5000,
           verticalPosition: "top",
-          panelClass: [
-            this.getPanelClass(snackbarType),
-            "mat-typography",
-            "onsip-snackbar",
-            "onsip-snackbar-top"
-          ],
+          panelClass: ["mat-typography"],
           data: { message, snackbarType, action }
         },
         options
@@ -38,9 +33,5 @@ export class SnackbarService {
 
   dismiss(): void {
     this.snackbarRef && this.snackbarRef.dismiss();
-  }
-
-  private getPanelClass(type: SnackbarType | undefined): string {
-    return type ? `onsip-snackbar-${type}-background` : "";
   }
 }
