@@ -28,7 +28,10 @@ export class AuthService extends ApiService {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   login(obj: any) {
-    this.makeRequest<TrunkingApiResponse>(ApiAction.SessionCreate, obj, { method: "POST" })
+    this.makeRequest<TrunkingApiResponse>(ApiAction.SessionCreate, obj, {
+      method: "POST",
+      isShowSnackBar: true
+    })
       .pipe(
         switchMap(res => {
           const session = res?.Context.Session as APISessionObject;
@@ -74,7 +77,7 @@ export class AuthService extends ApiService {
         UserId: session.UserId,
         SessionId: session.SessionId
       },
-      { method: "POST" }
+      { method: "POST", isShowSnackBar: true }
     ).pipe(
       map(res => ({
         user: res.Result.UserRead,

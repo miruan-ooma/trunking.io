@@ -1,17 +1,26 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Injectable } from "@angular/core";
+import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
+import { Injectable, inject } from "@angular/core";
 import { environment } from "../environments/environment";
-import { EMPTY, Observable, map } from "rxjs";
+import { EMPTY, Observable, catchError, map, of, switchMap, throwError } from "rxjs";
+import {
+  IncompleteTrunkingAPIAction,
+  InvalidTrunkingAPIRequest,
+  TrunkingAPIError,
+  TrunkingApiResponse
+} from "./context.model";
+import { SnackbarService } from "../app/shared/components/snackbar.service";
 
 interface MakeRequestOptions {
   method?: "GET" | "POST" | "DELETE";
+  isShowSnackBar?: boolean;
 }
 
 @Injectable({
   providedIn: "root"
 })
 export class ApiService {
+  snackbarService = inject(SnackbarService);
   readonly ApiUrl = environment.production
     ? "https://api.onsip.com/api"
     : "https://beta.jnctn.com/api";
@@ -19,8 +28,6 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   makeRequest<T = any>(actionName: string, body: any = {}, options?: MakeRequestOptions) {
-    console.log(environment);
-
     const headerDict = {
       "Content-Type": "application/x-www-form-urlencoded"
     };
@@ -41,7 +48,36 @@ export class ApiService {
       request$ = this.http.post<T>(this.ApiUrl, query, requestOptions);
     }
 
-    return request$.pipe(map(res => (res as any).Response as T));
+    return request$.pipe(
+      catchError((err: HttpErrorResponse) => {
+        if (err.status !== 200) {
+          this.snackbarService.openSnackBar(err.message, "error");
+        }
+        return throwError(() => err);
+      }),
+      map(res => (res as any).Response as T),
+      switchMap(res => this.handleError(res as TrunkingApiResponse, !!options?.isShowSnackBar))
+    );
+  }
+
+  private handleError(res: TrunkingApiResponse, isShowSnackBar: boolean) {
+    if (res.Context.Action.IsCompleted === "true") {
+      return of(res);
+    }
+    return throwError(() => {
+      const err = this.getError(res) as TrunkingAPIError;
+      if (isShowSnackBar) {
+        this.snackbarService.openSnackBar(err.Message, "error");
+      }
+      return err;
+    });
+  }
+
+  private getError(res: TrunkingApiResponse) {
+    return (
+      (res.Context.Action as IncompleteTrunkingAPIAction)?.Errors?.Error ||
+      (res.Context.Request as InvalidTrunkingAPIRequest)?.Errors?.Error
+    );
   }
 
   private querystringify(obj: any): string {

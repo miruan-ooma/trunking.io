@@ -1,0 +1,16 @@
+:host {
+  display: flex;
+  align-items: center;
+
+  &::ng-deep {
+    .mat-body-1 {
+      margin-bottom: 0;
+    }
+    mat-icon {
+      padding-right: 16px;
+      &.error {
+        color: #e3596a;
+      }
+    }
+  }
+}
