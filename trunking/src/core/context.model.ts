@@ -23,7 +23,7 @@ declare interface TrunkingAPIAction {
 declare interface CompleteTrunkingAPIAction extends TrunkingAPIAction {
   IsCompleted: "true";
 }
-declare interface IncompleteTrunkingAPIAction extends TrunkingAPIAction {
+export declare interface IncompleteTrunkingAPIAction extends TrunkingAPIAction {
   IsCompleted: "false";
   Errors: TrunkingAPINotEmptyArray<"Error", TrunkingAPIError>;
 }
@@ -37,7 +37,7 @@ declare interface ValidTrunkingAPIRequest extends TrunkingAPIRequest {
   IsValid: "true";
   Parameters: TrunkingAPINotEmptyArray<"Parameter", TrunkingAPIParameter>;
 }
-declare interface InvalidTrunkingAPIRequest extends TrunkingAPIRequest {
+export declare interface InvalidTrunkingAPIRequest extends TrunkingAPIRequest {
   IsValid: "false";
   Errors: TrunkingAPINotEmptyArray<"Error", TrunkingAPIError>;
   Parameters?: TrunkingAPINotEmptyArray<"Parameter", TrunkingAPIParameter>;
@@ -64,7 +64,7 @@ declare interface TrunkingAPIParameter {
 }
 
 // `Error` helper interface
-declare interface TrunkingAPIError {
+export declare interface TrunkingAPIError {
   /** see src/common/services/api/apiErrorCodes */
   Code: string;
   Message: string;

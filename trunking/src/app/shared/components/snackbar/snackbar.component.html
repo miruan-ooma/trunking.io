@@ -1,0 +1,7 @@
+<mat-icon [class.error]="isError">{{ isError ? "info" : "check_circle" }}</mat-icon>
+<span class="mat-body-1">{{ data.message }}</span>
+<div>
+  @if (data.action) {
+    <button mat-button (click)="dimiss()">{{ data.action }}</button>
+  }
+</div>
